@@ -10,10 +10,13 @@ def main(page: ft.Page):
     page.window.height = 680
 
     # Título da aplicação
-    txt_titulo = ft.Text(value="Lista Encadeada Simples", size=25)
+    txt_titulo = ft.Text(value="Lista Encadeada Simples", size=28)
 
     # Criar uma lista em FLET
     ltw_lista = ft.ListView(expand=1, auto_scroll=True)
+
+    # Comprimento da lista
+    txt_comprimento = ft.Text(value="Comprimento: ", size=23)
 
     # Texto digitado para inserir na lista
     ttf_texto = ft.TextField()
@@ -38,6 +41,7 @@ def main(page: ft.Page):
                 ]
             )
         )
+        txt_comprimento.value = f"Comprimento: {len(ltw_lista.controls)}"
         recontar_indices()
         # Atualizar a página toda
         page.update()
@@ -54,6 +58,8 @@ def main(page: ft.Page):
         lista_aux = [ft.Text(value=valor, size=20)]
         # Inserir novo texto no inicio da lista
         ltw_lista.controls = lista_aux + ltw_lista.controls
+        txt_comprimento.value = f"Comprimento: {len(ltw_lista.controls)}"
+        recontar_indices()
         # Atualizar a página toda
         page.update()
 
@@ -66,6 +72,10 @@ def main(page: ft.Page):
     def clk_remover_final(e):
         # remover texto no final da lista
         ltw_lista.controls.pop()
+        txt_comprimento.value = f"Comprimento: {len(ltw_lista.controls)}"
+        recontar_indices()
+        txt_comprimento.value = f"Comprimento: {len(ltw_lista.controls)}"
+        recontar_indices()
         # Atualizar a página toda
         page.update()
 
@@ -81,6 +91,7 @@ def main(page: ft.Page):
 
     page.add(
         txt_titulo,
+        txt_comprimento,
         ltw_lista,
         ttf_texto,
         linha,
