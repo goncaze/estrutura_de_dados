@@ -5,7 +5,7 @@ def main(page: ft.Page):
     # Configurar tema de cor da page
     page.theme_mode = ft.ThemeMode.LIGHT
     # Setar largura da page
-    page.window.width = 380
+    page.window.width = 400
     # Setar altura da page
     page.window.height = 680
 
@@ -23,7 +23,7 @@ def main(page: ft.Page):
         # Obter texto digitado pelo usuário
         valor = ttf_texto.value
         # Inserir texto no final da lista
-        ltw_lista.controls.append(ft.Text(value=valor))
+        ltw_lista.controls.append(ft.Text(value=valor, size=20))
         # Atualizar a página toda
         page.update()
 
@@ -36,7 +36,7 @@ def main(page: ft.Page):
     def clk_inserir_inicio(e):
         # Obter texto digitado pelo usuário
         valor = ttf_texto.value
-        lista_aux = [ft.Text(value=valor)]
+        lista_aux = [ft.Text(value=valor, size=20)]
         # Inserir novo texto no inicio da lista
         ltw_lista.controls = lista_aux + ltw_lista.controls
         # Atualizar a página toda
@@ -47,12 +47,21 @@ def main(page: ft.Page):
         text="Inserir inicio", on_click=clk_inserir_inicio
     )
 
+    # Função
+    def clk_remover_final(e):
+        # remover texto no final da lista
+        ltw_lista.controls.pop()
+        # Atualizar a página toda
+        page.update()
+
+    # Botão
+    btn_remover_final = ft.ElevatedButton(
+        text="Remover final", on_click=clk_remover_final
+    )
+
     # Criar linha para alinhar botões
     linha = ft.Row(
-        controls=[
-            btn_inserir_inicio,
-            btn_inserir_final,
-        ]
+        wrap=True, controls=[btn_inserir_inicio, btn_inserir_final, btn_remover_final]
     )
 
     page.add(
