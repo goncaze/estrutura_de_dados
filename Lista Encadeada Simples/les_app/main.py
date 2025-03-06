@@ -9,9 +9,24 @@ def main(page: ft.Page):
     # Setar altura da page
     page.window.height = 680
 
+    # Título da aplicação
     txt_titulo = ft.Text(value="Lista Encadeada Simples", size=25)
 
-    page.add(txt_titulo)
+    # Criar uma lista em FLET
+    ltw_lista = ft.ListView(expand=1, auto_scroll=True)
+
+    ttf_texto = ft.TextField()
+
+    def clk_inserir_final(e):
+        valor = ttf_texto.value
+        ltw_lista.controls.append(ft.Text(value=valor))
+        page.update()
+
+    btn_inserir_final = ft.ElevatedButton(
+        text="Inserir final", on_click=clk_inserir_final
+    )
+
+    page.add(txt_titulo, ltw_lista, ttf_texto, btn_inserir_final)
 
     # Atualizar/Recarregar a page
     page.update()
