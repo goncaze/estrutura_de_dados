@@ -23,7 +23,15 @@ def main(page: ft.Page):
         # Obter texto digitado pelo usuário
         valor = ttf_texto.value
         # Inserir texto no final da lista
-        ltw_lista.controls.append(ft.Text(value=valor, size=20))
+        ltw_lista.controls.append(
+            ft.Row(
+                controls=[
+                    ft.Text(value=len(ltw_lista.controls), size=20),
+                    ft.Text(value=valor, size=20),
+                ]
+            )
+        )
+
         # Atualizar a página toda
         page.update()
 
