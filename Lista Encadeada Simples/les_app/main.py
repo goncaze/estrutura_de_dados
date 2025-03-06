@@ -18,6 +18,13 @@ def main(page: ft.Page):
     # Texto digitado para inserir na lista
     ttf_texto = ft.TextField()
 
+    # Função para recontar os índices da lista
+    def recontar_indices():
+        i = 0
+        for elemento in ltw_lista.controls:
+            elemento.controls[0].value = i
+            i += 1
+
     # Função
     def clk_inserir_final(e):
         # Obter texto digitado pelo usuário
@@ -31,7 +38,7 @@ def main(page: ft.Page):
                 ]
             )
         )
-
+        recontar_indices()
         # Atualizar a página toda
         page.update()
 
