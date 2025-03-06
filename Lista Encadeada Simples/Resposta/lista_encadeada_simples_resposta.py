@@ -4,10 +4,10 @@ ATIVIDADE DE LISTA ENCADEADA SIMPLES COM POO
 
 ==>>> // Não usar Inteligência Artificial \\ <<<==
 
-Caro estudante de TDS, você deverá criar um menu interativo para realização das 
+Caro estudante de TDS, você deverá criar um menu interativo para realização das
 seguintes operações da lista encadeada simples:
 
-1. Criar uma classe Nodo. 
+1. Criar uma classe Noh.
 2. Criar uma classe Lista.
 
 3. Criar uma função que verifica se a lista está vazia.
@@ -64,7 +64,7 @@ class Lista:
 
     # 6.  Criar uma função que adiciona um elemento no final da lista.
     def append(self, novo_noh: Noh):
-        if not self.esta_vazia():
+        if not self.esta_vazia():  # Se lista não estiver vazia
             nohaux: Noh = self.primeiro_noh
             while True:
                 if nohaux.prox:
@@ -141,6 +141,21 @@ class Lista:
 
     # 11. Criar uma função que conta o número de ocorrências de um elemento na lista
     # ==> ITEM 11 É UMA ATIVIDADE PARA OS ALUNOS DE TDS <==
+    def contar_ocorrencia(elemento): ...
 
     def __str__(self) -> str:
         return f"{self.primeiro_noh}"
+
+
+# ======================================================== #
+# ================= CONTROLE DE MENU ===================== #
+
+
+def controle_menu(): ...
+
+
+# ======================================================== #
+# =================== INVOCAR FUNÇÃO ===================== #
+if __name__ == "__main__":
+
+    controle_menu()
