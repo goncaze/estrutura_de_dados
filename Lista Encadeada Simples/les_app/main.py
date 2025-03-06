@@ -37,7 +37,7 @@ def main(page: ft.Page):
         # Obter texto digitado pelo usuário
         valor = ttf_texto.value
         lista_aux = [ft.Text(value=valor)]
-        # Inserir texto no final da lista
+        # Inserir novo texto no inicio da lista
         ltw_lista.controls = lista_aux + ltw_lista.controls
         # Atualizar a página toda
         page.update()
@@ -47,12 +47,19 @@ def main(page: ft.Page):
         text="Inserir inicio", on_click=clk_inserir_inicio
     )
 
+    # Criar linha para alinhar botões
+    linha = ft.Row(
+        controls=[
+            btn_inserir_inicio,
+            btn_inserir_final,
+        ]
+    )
+
     page.add(
         txt_titulo,
         ltw_lista,
         ttf_texto,
-        btn_inserir_inicio,
-        btn_inserir_final,
+        linha,
     )
 
     # Atualizar/Recarregar a page
