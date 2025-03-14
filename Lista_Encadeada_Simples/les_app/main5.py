@@ -6,14 +6,23 @@ class App:
     def __init__(self, page: ft.Page):
         self.page = page
         self.page.theme_mode = ft.ThemeMode.LIGHT
+        self.page.horizontal_alignment = ft.CrossAxisAlignment.STRETCH
         self.page.window.width = 400
         self.page.window.height = 680
         self.page.window.always_on_top = True
         self.page.window.left = 1100
         self.page.window.top = 80
         self.page.padding = 25
+        self.page.bgcolor = "white"
 
-        self.capa = ft.Image(src=r"assets\image\capa2.png")
+        self.capa = ft.Image(src=r"figuras/capa2.png")
+        self.txt_titulo = ft.Text(
+            value="LISTA ENCADEADA SIMPLES",
+            size=20,
+            color=ft.colors.WHITE,
+            bgcolor=ft.colors.ORANGE_800,
+            weight=ft.FontWeight.NORMAL,
+        )
 
         self.ltw_lista = ft.ListView(
             expand=1,
@@ -142,13 +151,13 @@ class App:
             self.capa,
             # self.txt_titulo,
             self.txt_comprimento,
-            # self.ltw_lista,
             self.ctn_lista,
             self.ttf_novo_valor,
             self.ctn_controles,
         )
         self.ttf_novo_valor.focus()  # Atribuir foco ao componente ttf_texto
 
+        print(f"{self.capa.src = }")
         self.page.update()  # Atualizar/Recarregar a page
 
     # Função para recontar os índices da lista
@@ -253,4 +262,4 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.app(target=main, assets_dir="assets")
