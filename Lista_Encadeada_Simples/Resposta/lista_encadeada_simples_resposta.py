@@ -147,15 +147,76 @@ class Lista:
         return f"{self.primeiro_noh}"
 
 
+# imprime o titulo
+def imprimir_titulo():
+    titulo = "LISTA ENCADEADA SIMPLES!"
+    print(f"|{format('','.^45')}|")
+    print(f"|{format(titulo,'.^45')}|")
+    print(f"|{format('','.^45')}|")
+
+
 # ======================================================== #
 # ================= CONTROLE DE MENU ===================== #
 
 
-def controle_menu(): ...
+menu = """
+    [0] Encerrar.
+    [4] Comprimento da lista.
+    [5] Inserir no início da lista.
+    [6] Inserir no final da lista.
+    [7] Inserir em posição específica.
+    [8] Remover em posição específica.
+    [9] Remover o primeiro.
+    [10] Remover o último.
+    [11] Contar ocorrências.
+"""
+
+
+def controle_menu(menu):
+    lista = Lista()
+    while True:
+        os.system("cls")
+        imprimir_titulo()
+        print(menu)
+        selecao = input("\n Seleção: ")
+
+        match selecao:
+            case "0":
+                os.system("cls")
+                print(f"Encerrando a aplicação! \n\n")
+                break
+            case "4":
+                os.system("cls")
+                print(f" {lista.comprimento() = }")
+                input()
+            case "5":
+                os.system("cls")
+                novo_valor = input("Digite um valor: ")
+                novo_noh = Noh(valor=novo_valor)
+                lista.insert(novo_noh)
+                print(f"\n\n{lista}")
+                input()
+            case "6":
+                os.system("cls")
+                novo_valor = input("Digite um valor: ")
+                novo_noh = Noh(valor=novo_valor)
+                lista.append(novo_noh)
+                print(f"\n\n{lista}")
+                input()
+            case "7":
+                os.system("cls")
+                novo_valor = input("Digite um valor: ")
+                novo_noh = Noh(valor=novo_valor)
+                posicao = input("Em qual posição: ")
+                novo_noh = Noh(valor=novo_valor)
+                if lista.colocar_em_p(int(posicao), novo_noh):
+                    print(f"\n\n{lista}")
+                else:
+                    print("Falha na Inserção!")
+                input()
 
 
 # ======================================================== #
 # =================== INVOCAR FUNÇÃO ===================== #
 if __name__ == "__main__":
-
-    controle_menu()
+    controle_menu(menu)
