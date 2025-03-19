@@ -5,24 +5,14 @@ import string
 class App:
     def __init__(self, page: ft.Page):
         self.page = page
-        self.page.theme_mode = ft.ThemeMode.DARK
-        self.page.auto_scroll = True
-        self.page.horizontal_alignment = ft.CrossAxisAlignment.STRETCH
+        self.page.theme_mode = ft.ThemeMode.LIGHT
         self.page.window.width = 400
         self.page.window.height = 680
         self.page.window.always_on_top = True
         self.page.window.left = 1100
         self.page.window.top = 80
-        self.page.padding = 10
 
-        self.capa = ft.Image(src=r"capa2.png")
-        self.txt_titulo = ft.Text(
-            value="LISTA ENCADEADA SIMPLES",
-            size=20,
-            color=ft.colors.WHITE,
-            bgcolor=ft.colors.ORANGE_800,
-            weight=ft.FontWeight.NORMAL,
-        )
+        self.txt_titulo = ft.Text(value="Lista Encadeada Simples", size=28)
 
         self.ltw_lista = ft.ListView(
             expand=1,
@@ -34,142 +24,68 @@ class App:
                         ft.Text(value=abc, size=20),
                     ]
                 )
-                for xyz, abc in zip(range(0, 10), string.ascii_uppercase[:10])
+                for xyz, abc in zip(range(0, 5), string.ascii_uppercase[:5])
             ],
         )
-
-        self.ctn_lista = ft.Container(
-            content=self.ltw_lista,
-            expand=True,
-            padding=ft.padding.only(bottom=10, top=10),
-            margin=ft.margin.all(10),
-        )
-
-        self.txt_comprimento = ft.Text(
-            value=f"Comprimento da lista: {len(self.ltw_lista.controls)}", size=19
-        )
-        self.txt_index = ft.Text(
-            value="Posição específica", weight=ft.FontWeight.W_500, size=19.5
-        )
-        self.ttf_index = ft.TextField(label="Index", expand=True)
+        self.txt_comprimento = ft.Text(value="Comprimento: ", size=23)
+        self.txt_index = ft.Text(value="Posição específica", weight=ft.FontWeight.W_500)
+        self.ttf_index = ft.TextField(expand=True)
         self.ttf_novo_valor = ft.TextField(label="Novo valor")
 
         # Botão para inserir valor no final da lista
-        self.btn_inserir_final = ft.CupertinoButton(
-            text="Inserir final",
-            on_click=self.clk_inserir_final,
-            expand=True,
-            border_radius=5,
-            color=ft.colors.WHITE,
-            bgcolor="#d5085c",
-            padding=0,
+        self.btn_inserir_final = ft.ElevatedButton(
+            text="Inserir final", on_click=self.clk_inserir_final
         )
         # Botão para inserir valor no início da lista
-        self.btn_inserir_inicio = ft.CupertinoButton(
-            text="Inserir inicio",
-            on_click=self.clk_inserir_inicio,
-            expand=True,
-            border_radius=5,
-            color=ft.colors.WHITE,
-            bgcolor="#d5085c",
-            padding=0,
+        self.btn_inserir_inicio = ft.ElevatedButton(
+            text="Inserir inicio", on_click=self.clk_inserir_inicio
         )
         # Botão para remover valor no inicio da lista
-        self.btn_remover_inicio = ft.CupertinoButton(
-            text="Remover inicio",
-            on_click=self.clk_remover_inicio,
-            expand=True,
-            border_radius=5,
-            color=ft.colors.WHITE,
-            bgcolor="#d5085c",
-            padding=0,
+        self.btn_remover_inicio = ft.ElevatedButton(
+            text="Remover inicio", on_click=self.clk_remover_inicio
         )
         # Botão para remover valor no final da lista
-        self.btn_remover_final = ft.CupertinoButton(
-            text="Remover final",
-            on_click=self.clk_remover_final,
-            expand=True,
-            border_radius=5,
-            color=ft.colors.WHITE,
-            bgcolor="#d5085c",
-            padding=0,
+        self.btn_remover_final = ft.ElevatedButton(
+            text="Remover final", on_click=self.clk_remover_final
         )
 
         # Botão para inserir em posição especificada
-        self.btn_inserir_especifica = ft.CupertinoButton(
-            text="Inserir Específica",
-            on_click=self.clk_inserir_especifica,
-            expand=True,
-            border_radius=5,
-            color=ft.colors.WHITE,
-            bgcolor="#d5085c",
-            padding=0,
+        self.btn_inserir_especifica = ft.ElevatedButton(
+            text="Inserir P. Específica", on_click=self.clk_inserir_especifica
         )
         # Botão para remover em posição especificada
-        self.btn_remover_especifica = ft.CupertinoButton(
-            text="Remover Específica",
-            on_click=self.clk_remover_especifica,
-            expand=True,
-            border_radius=5,
-            color=ft.colors.WHITE,
-            bgcolor="#d5085c",
-            padding=0,
+        self.btn_remover_especifica = ft.ElevatedButton(
+            text="Remover P. Específica", on_click=self.clk_remover_especifica
         )
 
         # Criar linha para alinhar botões
-        self.ctn_controles = ft.Container(
-            # expand=True,
-            content=ft.Column(
-                expand=True,
-                controls=[
-                    ft.Row(
-                        expand=True,
-                        controls=[
-                            self.btn_inserir_inicio,
-                            self.btn_inserir_final,
-                        ],
-                    ),
-                    ft.Row(
-                        controls=[
-                            self.btn_remover_inicio,
-                            self.btn_remover_final,
-                        ]
-                    ),
-                    ft.Row(
-                        controls=[
-                            self.txt_index,
-                            self.ttf_index,
-                        ]
-                    ),
-                    ft.Row(
-                        controls=[
-                            self.btn_inserir_especifica,
-                            self.btn_remover_especifica,
-                        ],
-                    ),
-                ],
-            ),
+        self.linha = ft.Row(
+            wrap=True,
+            controls=[
+                self.btn_inserir_inicio,
+                self.btn_inserir_final,
+                self.btn_remover_inicio,
+                self.btn_remover_final,
+                ft.Row(
+                    controls=[
+                        self.txt_index,
+                        self.ttf_index,
+                    ]
+                ),
+                self.btn_inserir_especifica,
+                self.btn_remover_especifica,
+            ],
         )
-
         # Adicionando componentes na page
         self.page.add(
-            ft.SafeArea(
-                expand=True,
-                content=ft.Column(
-                    expand=True,
-                    controls=[
-                        self.capa,
-                        # self.txt_titulo,
-                        self.txt_comprimento,
-                        self.ctn_lista,
-                        self.ttf_novo_valor,
-                        self.ctn_controles,
-                    ],
-                ),
-            )
+            self.txt_titulo,
+            self.txt_comprimento,
+            self.ltw_lista,
+            self.ttf_novo_valor,
+            self.linha,
         )
-
         self.ttf_novo_valor.focus()  # Atribuir foco ao componente ttf_texto
+
         self.page.update()  # Atualizar/Recarregar a page
 
     # Função para recontar os índices da lista
@@ -274,4 +190,4 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main, assets_dir="assets")
+    ft.app(target=main)
