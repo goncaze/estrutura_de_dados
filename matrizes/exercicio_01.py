@@ -22,7 +22,6 @@ array_2d: np.ndarray = None
 def criar_array1d() -> np.ndarray:
     lista = []
     while True:
-        os.system("cls")
         print(menu_array)
 
         opc = input("Opção: ")
@@ -37,7 +36,19 @@ def criar_array1d() -> np.ndarray:
                 return np.array(lista)
 
 
-def criar_array2d() -> np.ndarray: ...
+def criar_array2d() -> np.ndarray:
+    linha: int = int(input("\n Nº de linhas:"))
+    coluna: int = int(input("\n Nº de colunas:"))
+
+    lista: list = []
+
+    for l in range(linha):
+        linha: list = []
+        for c in range(coluna):
+            linha.append(float(input(f"[{l},{c}] = ")))
+        lista.append(linha)
+
+    return np.array(lista)
 
 
 def imprimir_arrays(arr_1d: np.ndarray = None, arr_2d: np.ndarray = None):
@@ -63,12 +74,14 @@ while True:
         case "0":
             break
         case "1":
+            os.system("cls")
             array_1d = criar_array1d()
         case "2":
-            ...
+            os.system("cls")
+            array_2d = criar_array2d()
         case "3":
             os.system("cls")
-            imprimir_arrays(arr_1d=array_1d)
+            imprimir_arrays(arr_1d=array_1d, arr_2d=array_2d)
             input()
         case "4":
             ...
